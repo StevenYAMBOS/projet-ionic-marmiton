@@ -5,4 +5,4 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 86400");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$pdo= new PDO('mysql:host=localhost;dbname=marmite', 'root', '', array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND=> 'SET NAMES utf8'));
+$pdo= new PDO('mysql:host=localhost;dbname=ionic', 'root', '', array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND=> 'SET NAMES utf8'));

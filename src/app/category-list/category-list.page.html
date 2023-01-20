@@ -1,0 +1,22 @@
+<ion-content class="ion-padding-top">
+
+  <table class="table  mt-5 table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of category">
+        <td>{{category.title }}</td>
+        <td>
+
+          <ion-icon [routerLink]="['/edit-categories', category.id]" size="large" name="create-outline"></ion-icon>
+          <ion-icon size="large" (click)="delete(category.id)" name="trash-outline"></ion-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</ion-content>

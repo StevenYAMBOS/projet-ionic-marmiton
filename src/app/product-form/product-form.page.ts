@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {NgForm} from "@angular/forms";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-product-form',
@@ -9,15 +9,18 @@ import {NgForm} from "@angular/forms";
 })
 export class ProductFormPage implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  categories:any;
+
+  constructor(private http: HttpClient) {
+   this.http.get('http://localhost:8888/marmiton/src/categories.php?action=getall').toPromise().then((response: any) => { this.categories = response; console.log(this.categories) })
+   }
 
   addProduct(form: NgForm){
 
-    this.http.post('http://localhost/marmiton/marmiton/src/product.php?action=add', JSON.stringify(form.value)).toPromise().then((response:any)=>{console.log(response) })
+    this.http.post('http://localhost:8888/marmiton/src/product.php?action=add', JSON.stringify(form.value)).toPromise().then((response:any)=>{console.log(response) })
 
 
   }
-
 
   ngOnInit() {
   }

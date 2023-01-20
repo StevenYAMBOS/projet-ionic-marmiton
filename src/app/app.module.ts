@@ -1,36 +1,44 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
-import {firstValueFrom, isObservable, Observable} from "rxjs";
-
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'product-form',
+    loadChildren: () => import('./product-form/product-form.module').then( m => m.ProductFormPageModule)
+  },
+  {
+    path: 'product-list',
+    loadChildren: () => import('./product-list/product-list.module').then( m => m.ProductListPageModule)
+  },
+  {
+    path: 'edit-product/:id',
+    loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule)
+  },
+  {
+    path: 'one-product/:id',
+    loadChildren: () => import('./one-product/one-product.module').then( m => m.OneProductPageModule)
+  },
+  {
+    path: 'categories-list',
+    loadChildren: () => import('./category-list/category-list.module').then( m => m.CategoriesListPageModule)
+  },
+  {
+    path: 'categories-form',
+    loadChildren: () => import('./category-form/category-form.module').then( m => m.CategoriesFormPageModule)
+  },
+  {
+    path: 'edit-categories/:id',
+    loadChildren: () => import('./edit-category/edit-category.module').then(m => m.EditCategoriesPageModule)
+  },
+];
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
+  exports: [RouterModule]
 })
-export class AppModule {
-
-  async waitFor<T>(prom: Promise<T> | Observable<T>): Promise<T> {
-    if (isObservable(prom)) {
-      prom = firstValueFrom(prom);
-    }
-    const macroTask = Zone.current
-      .scheduleMacroTask(
-        `WAITFOR-${Math.random()}`,
-        () => { },
-        {},
-        () => { }
-      );
-    return prom.then((p: T) => {
-      macroTask.invoke();
-      return p;
-    });
-  }
-}
+export class AppRoutingModule {}

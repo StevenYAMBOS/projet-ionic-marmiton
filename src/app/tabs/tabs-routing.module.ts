@@ -31,8 +31,15 @@ const routes: Routes = [
       {
         path: 'product-list',
         loadChildren: () => import('../product-list/product-list.module').then(m => m.ProductListPageModule)
-      }
-
+      },
+      {
+        path: 'categories-form',
+        loadChildren: () => import('../category-form/category-form.module').then(m => m.CategoriesFormPageModule)
+      },
+      {
+        path: 'categories-list',
+        loadChildren: () => import('../category-list/category-list.module').then(m => m.CategoriesListPageModule)
+      },
     ]
   },
   {

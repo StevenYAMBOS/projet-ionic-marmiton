@@ -1,0 +1,15 @@
+<ion-content class="ion-padding-top">
+  <form #form="ngForm" (submit)="editCategories(form)" class="ion-margin-top ion-padding-top">
+    <ion-item class="ion-margin-top">
+      <ion-input name="id" type="hidden" [(ngModel)]="categories.id"></ion-input>
+      <ion-label position="floating">Titre</ion-label>
+      <ion-input name="title" [(ngModel)]="categories.title"></ion-input>
+    </ion-item>
+
+
+    <ion-button type="submit">Enregistrer</ion-button>
+
+
+  </form>
+
+</ion-content>
